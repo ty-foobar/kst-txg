@@ -37,7 +37,13 @@ def zip_tmp_dir(trip: Trip, tmpDir: str, tmpFormat: str):
         if not inputStr.lower() == 'y':
             util.exit_('プログラムを終了します')
     os.rename(f'{baseName}.{tmpFormat}', f'{baseName}.{finFormat}')
-    print(f'保存先: {baseName}.{finFormat}')
+    print(f'保存先: {baseName}.{finFormat}\n')
+    print(
+        '*注意:\n'
+        '「立替払い精算」の書類では、資金名が「5. その他」に記入されています。資金が'
+        '「1. 教育研究費」「2. 指定寄付」「3. 受託研究」「4. 預り金」'
+        'のいずれかの場合は、出力ファイルを直接編集してください。'
+    )
 
 def rm_tmp_dir(tmpDir: str):
     shutil.rmtree(tmpDir)

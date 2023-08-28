@@ -59,10 +59,10 @@ def replace(prof: Prof, student: Student, trip: Trip, filePath: str):
             content += line
     chunks = content.split('##')
     for i, chunk in enumerate(chunks):
-        if not chunk:
+        if len(chunk) < 2:
             continue
         sign = chunk[0]
-        string = chunk[1:]
+        string = chunk[1:] # no IndexError even if len(chunk) < 2
         if sign == '%':
             chunks[i] = prof.replacement(string)
         elif sign == '*':

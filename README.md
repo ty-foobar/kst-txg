@@ -2,40 +2,15 @@
 
 **K**eio **S**cience and **T**echnology—**t**rip E**x**cel **g**enerator です。Microsoft Excel ファイルを展開した XML ファイルを Python スクリプトによって編集し、学外研究や学会活動などの出張に必要な書類を出力します。
 
-## 【重要】出力ファイル「○○.xlsx」を開いたときのエラーについて
+## [【重要】出力ファイル「○○.xlsx」を開いたときのエラーについて](https://github.com/ty-foobar/kst-txg/wiki/%E3%80%90%E9%87%8D%E8%A6%81%E3%80%91%E5%87%BA%E5%8A%9B%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%80%8C%E2%97%8B%E2%97%8B.xlsx%E3%80%8D%E3%82%92%E9%96%8B%E3%81%84%E3%81%9F%E3%81%A8%E3%81%8D%E3%81%AE%E3%82%A8%E3%83%A9%E3%83%BC%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6)
 
-出力ファイル「○○.xlsx」を開くと、以下のようなエラーメッセージが表示されます：
+## [使い方](https://github.com/ty-foobar/kst-txg/wiki/%E4%BD%BF%E3%81%84%E6%96%B9)
 
-> '○○.xlsx' の一部の内容に問題が見つかりました。可能な限り内容を回復しますか？ ブックの発行元が信頼できる場合は、\[はい\] をクリックしてください。
-
-これは、Excel 内部で自動生成されるフリガナに起因することを確認しています。**このフリガナはシートの見た目・セルの内容には影響しない**ので、\[はい\] をクリックして問題を修復してください。その上で、修復後のファイルを保存してください。
-
-詳しくは以下のリンクを参照してください。
-- [PhoneticProperties クラス](https://learn.microsoft.com/ja-jp/dotnet/api/documentformat.openxml.spreadsheet.phoneticproperties?view=openxml-2.8.1)
-- [Excelの破損【/xl/sharedStrings.xml パーツ内の文字列プロパティ (文字列)】について](https://answers.microsoft.com/ja-jp/msoffice/forum/all/excel%E3%81%AE%E7%A0%B4%E6%90%8Dxlsharedstringsxml/af4b9ebc-18e7-4df1-b02d-9364a9a4bc61)
+## [書類一覧](https://github.com/ty-foobar/kst-txg/wiki/%E6%9B%B8%E9%A1%9E%E4%B8%80%E8%A6%A7)
 
 ## 要件
 
 - Python3
-
-## 使い方
-
-1. prof.py, student.py, trips.py, gen.py を編集
-2. コマンドラインから `python3 -m gen` を実行
-3. 出力ファイル「○○.xlsx」を開く
-4. エラーメッセージが表示されたら問題を修復し、修復後のファイルを保存する
-
-なお、「立替払い精算」の書類では、資金名が「5. その他」に記入されます。資金が「1. 教育研究費」「2. 指定寄付」「3. 受託研究」「4. 預り金」のいずれかの場合は、出力ファイルを直接編集してください。
-
-## 書類一覧
-
-次の書類が一つのファイルにまとまって出力されます。
-
-1. 学外研究・学会活動届
-2. 様式32_出張旅費申請書
-3. 様式33_出張依頼書
-4. 立替払い精算
-5. 様式51_立替金請求書
 
 ## ライセンス
 

@@ -14,3 +14,6 @@ def tmp_dir():
 
 def tmp_format():
     return 'zip'
+
+def xl_format():
+    return 'xlsx'

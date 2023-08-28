@@ -20,7 +20,7 @@ class Prof:
             util.exit_(string.rstrip(', '))
 
     def replacement(self, string: str):
-        return str(self.info[string]) # some are ints
+        return str(self.info[string]) # str(arg): arg might be int
 
     def print_all(self):
         for key, val in self.info.items():
@@ -77,7 +77,7 @@ class Student:
             self.info[f'口座番号{i}'] = num
 
     def replacement(self, string: str):
-        return str(self.info[string]) # some are ints
+        return str(self.info[string]) # str(arg): arg might be int
 
     def print_all(self):
         for key, val in self.info.items():
@@ -144,7 +144,7 @@ class Trip():
     def set_year_month_day(self, whatDay: str):
         if whatDay[-1] != '日':
             util.exit_(f'{whatDay} must end with "日"') # for internal
-        what = whatDay[:-1] # e.g. '書類提出日'->'書類提出日'
+        what = whatDay[:-1] # e.g. '書類提出日'->'書類提出'
         date_ = self.format_date(self.info[whatDay])
         self.info[f'{what}年'] = date_.year
         self.info[f'{what}月'] = date_.month
@@ -167,13 +167,13 @@ class Trip():
 
     def replacement(self, string: str):
         if 'Bool' in string:
-            return self.Bool_replacement(string[4:])
+            return self.Bool_replacement(string[4:]) # 4 == len('Bool')
         elif 'Day' in string:
-            return self.Day_replacement(string[3:])
+            return self.Day_replacement(string[3:]) # 3 == len('Day')
         elif 'Tatekae' in string:
-            return self.Tatekae_replacement(string[7:])
+            return self.Tatekae_replacement(string[7:]) # 7 == len('Tatekae')
         else:
-            return str(self.info[string]) # some are ints
+            return str(self.info[string]) # str(arg): arg might be int
 
     def Bool_replacement(self, string: str):
         TorF, valName = string.split('-')
@@ -190,7 +190,7 @@ class Trip():
         if self.days[indx].info[colName] == 0:
             return ''
         else:
-            return str(self.days[indx].info[colName]) # some are ints
+            return str(self.days[indx].info[colName]) # str(arg): arg might be int
 
     def Tatekae_replacement(self, string: str):
         rowNum, colName = string.split('-')
@@ -198,7 +198,7 @@ class Trip():
         if self.tatekaes[indx].info[colName] == 0:
             return ''
         else:
-            return str(self.tatekaes[indx].info[colName]) # some are ints
+            return str(self.tatekaes[indx].info[colName]) # str(arg): arg might be int
 
     def print_all(self):
         for key, val in self.info.items():

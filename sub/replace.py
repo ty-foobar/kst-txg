@@ -3,7 +3,7 @@ from . import util
 from .cls import Prof, Student, Trip
 
 def check_info_prompt(prof: Prof, student: Student, trip: Trip):
-    print('次の情報が合っているか確認してください: \n')
+    print('次の情報が合っているか確認してください:\n')
     prof.print_all()
     print('=' * 30)
     student.print_all()

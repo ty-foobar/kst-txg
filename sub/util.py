@@ -7,7 +7,10 @@ def exit_(message: str):
     if zipFiles:
         for zipFile in zipFiles:
             os.remove(zipFile)
-    sys.exit(f'ERROR: {message}')
+    if message:
+        sys.exit(f'ERROR: {message}')
+    else:
+        sys.exit(1)
 
 def tmp_dir():
     return 'tmp'

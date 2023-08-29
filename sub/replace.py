@@ -23,21 +23,53 @@ def set_student_trip(student: Student, trip: Trip):
     trip.set_insurance()
     trip.set_tatekae_total()
 
+def new_base_name(baseName:str):
+    newBaseName = input(f'新しいファイル名を入力してください (例: {baseName}2): ')
+    xlFormat = util.xl_format()
+    while True:
+        print()
+        if not newBaseName: # this condition check must come first
+            newBaseName = input('ファイル名を入力してください: ')
+            continue
+        if not os.path.isfile(f'{newBaseName}.{xlFormat}'):
+            return newBaseName
+        print(f'ファイルは既に存在します: {newBaseName}.{xlFormat}')
+        newBaseName = input(f'別の名前にしてください: ')
+
+def base_name(trip: Trip):
+    baseName = f'{trip.info["研究機関／学会活動の名称"]}_事前書類'
+    xlFormat = util.xl_format()
+    if not os.path.isfile(f'{baseName}.{xlFormat}'):
+        return baseName
+    print(f'次のファイルは既に存在します: {baseName}.{xlFormat}')
+    inputStr = input(
+        '操作を選んでください: '
+        '[1] 上書き保存; '
+        '[2] 別名で保存; '
+        '[3] 保存しない: '
+    )
+    while True:
+        print()
+        if inputStr == '1':
+            return baseName
+        elif inputStr == '2':
+            return new_base_name(baseName)
+        elif inputStr == '3':
+            util.exit_('プログラムを終了します')
+        else:
+            inputStr = input('数字の 1, 2, 3 から操作を選んでください: ')
+
 def mk_tmp_dir():
     tmpDir = util.tmp_dir()
+    if os.path.isdir(tmpDir):
+        shutil.rmtree(tmpDir)
     shutil.copytree('template', tmpDir)
 
 def zip_tmp_dir(trip: Trip):
-    baseName = f'{trip.info["研究機関／学会活動の名称"]}_事前'
-    xlFormat = util.xl_format()
-    if os.path.isfile(f'{baseName}.{xlFormat}'):
-        print(f'次のファイルは既に存在します: {baseName}.{xlFormat}')
-        inputStr = input('上書きしますか？ [y/n]: ')
-        print()
-        if not inputStr.lower() == 'y':
-            util.exit_('プログラムを終了します')
+    baseName = base_name(trip)
     tmpFormat = util.tmp_format()
     tmpDir = util.tmp_dir()
+    xlFormat = util.xl_format()
     shutil.make_archive(baseName, tmpFormat, tmpDir) # does not accept 'xlsx' format
     os.rename(f'{baseName}.{tmpFormat}', f'{baseName}.{xlFormat}')
     print(f'保存先: {baseName}.{xlFormat}\n')
@@ -50,7 +82,8 @@ def zip_tmp_dir(trip: Trip):
 
 def rm_tmp_dir():
     tmpDir = util.tmp_dir()
-    shutil.rmtree(tmpDir)
+    if os.path.isdir(tmpDir):
+        shutil.rmtree(tmpDir)
 
 def replace(prof: Prof, student: Student, trip: Trip, filePath: str):
     content = ''

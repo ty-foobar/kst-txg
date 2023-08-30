@@ -1,12 +1,14 @@
 import glob, os, shutil, sys
 
 def exit_(message: str):
-    if os.path.isdir('tmp'):
-        shutil.rmtree('tmp')
-    zipFiles = glob.glob('*.zip')
-    if zipFiles:
-        for zipFile in zipFiles:
-            os.remove(zipFile)
+    tmpDir = tmp_dir()
+    archFormat = arch_format()
+    if os.path.isdir(tmpDir):
+        shutil.rmtree(tmpDir)
+    archFiles = glob.glob(f'*.{archFormat}')
+    if archFiles:
+        for archFile in archFiles:
+            os.remove(archFile)
     if message:
         sys.exit(f'ERROR: {message}')
     else:
@@ -15,7 +17,7 @@ def exit_(message: str):
 def tmp_dir():
     return 'tmp'
 
-def tmp_format():
+def arch_format():
     return 'zip'
 
 def xl_format():

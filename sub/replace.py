@@ -67,11 +67,11 @@ def mk_tmp_dir():
 
 def zip_tmp_dir(trip: Trip):
     baseName = base_name(trip)
-    tmpFormat = util.tmp_format()
+    archFormat = util.arch_format()
     tmpDir = util.tmp_dir()
     xlFormat = util.xl_format()
-    shutil.make_archive(baseName, tmpFormat, tmpDir) # does not accept 'xlsx' format
-    os.rename(f'{baseName}.{tmpFormat}', f'{baseName}.{xlFormat}')
+    shutil.make_archive(baseName, archFormat, tmpDir) # does not accept 'xlsx' format
+    os.rename(f'{baseName}.{archFormat}', f'{baseName}.{xlFormat}')
     print(f'保存先: {baseName}.{xlFormat}\n')
     print(
         '*注意:\n'

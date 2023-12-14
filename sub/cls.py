@@ -85,18 +85,12 @@ class Student:
 
 class Day():
     def __init__(self, dateStr: str, route: str):
-        self.info = {}
-        self.set_month_day(dateStr)
-        self.info['経路'] = route
-
-    def set_month_day(self, dateStr: str):
-        if not dateStr:
-            self.info['月'] = 0
-            self.info['日'] = 0
-            return
         date_ = self.format_date(dateStr)
-        self.info['月'] = date_.month
-        self.info['日'] = date_.day
+        self.info = {
+            '月': date_.month,
+            '日': date_.day,
+            '経路': route,
+        }
 
     def format_date(self, dateStr: str):
         dateStrLst = dateStr.split('/')
@@ -186,18 +180,18 @@ class Trip():
 
     def Day_replacement(self, string: str):
         rowNum, colName = string.split('-')
-        indx = int(rowNum) - 1
-        if self.days[indx].info[colName] == 0:
+        if int(rowNum) > len(self.days):
             return ''
         else:
+            indx = int(rowNum) - 1
             return str(self.days[indx].info[colName]) # str(arg): arg might be int
 
     def Tatekae_replacement(self, string: str):
         rowNum, colName = string.split('-')
-        indx = int(rowNum) - 1
-        if self.tatekaes[indx].info[colName] == 0:
+        if int(rowNum) > len(self.tatekaes):
             return ''
         else:
+            indx = int(rowNum) - 1
             return str(self.tatekaes[indx].info[colName]) # str(arg): arg might be int
 
     def print_all(self):

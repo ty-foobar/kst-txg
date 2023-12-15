@@ -4,7 +4,18 @@ from . import util
 class Prof:
     def __init__(self, info: dict):
         self.info = info
+        self.set_fund_code()
+        self.concat_fund_name_fund_code()
         self.check_occupation()
+
+    def set_fund_code(self):
+        self.info['資金コード'] = self.info.get('資金コード', '')
+
+    def concat_fund_name_fund_code(self):
+        if not self.info['資金コード']:
+            self.info['資金名・資金コード'] = self.info['資金名']
+        else:
+            self.info['資金名・資金コード'] = f'{self.info["資金名"]}・{self.info["資金コード"]}'
 
     def check_occupation(self):
         occupations = (
